@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import autronauta from './imagens/autronauta.jpg'
+import meteoro from './imagens/meteoro.jpg'
+import nave from './imagens/nave.jpg'
+import roupaEspacial from './imagens/roupa-espacial.jpg'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+
+
+  state = {
+    produtoMax: ``,
+    produtoMin: ``,
+    pesquisa : ``,
+
+    carrinhoProduto : [],
+    produtosLoja : [
+
+      {
+        id: 01,
+        nome: `Autronauta`,
+        preco: 10.000,
+        foto:autronauta
+      },
+
+      {
+        id: 02,
+        nome: `Meteoro`,
+        preco: 15.000,
+        foto: meteoro
+      },
+
+      {
+        id: 03,
+        nome: `Nave`,
+        preco: 50.000,
+        foto:nave
+      },
+
+      {
+        id: 04,
+        nome: `Roupa Espacial`,
+        preco: 20.000,
+        foto: roupaEspacial
+      }
+    ]
+  }
+
+  render(){
+
+    return(
+      <>
+      <h1>E-Commerce</h1>
+      </>
+    )
+  }
 }
-
-export default App;
