@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './Components/Header/Header';
+import styled from "styled-components";
+import Filtros from './Components/Filtros/Filtros';
+import Produtos from './Components/Produto/Produto';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const Banner = styled.img`
+ height: 350px;
+ width: 100vw;
+`
+
+
+export default class App extends React.Component{
+  render(){
+    return(
+      <div>
+        <Header/>
+        <Banner src='img/banner.jpg' alt='Banner'></Banner>
+        <Filtros/>
+        <Produtos/>
+      </div>
+    )
+  }
 }
-
-export default App;
