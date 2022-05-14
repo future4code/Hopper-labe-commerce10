@@ -1,13 +1,24 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+
+
 const ContainerPrincipal = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-height: 200px;
-    max-width: 100vw;
-    background-color: #4169E1;
+    width: 100vw;
+    animation: color-change-2x 2s linear infinite alternate both;
+
+    @keyframes color-change-2x {
+    0% {
+      background: #19dcea;
+    }
+    100% {
+      background: #b22cff;
+    }
+  }
     
     
 `

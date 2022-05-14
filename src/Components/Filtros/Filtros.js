@@ -25,6 +25,8 @@ const FiltrosValores = styled.div`
     }
 `
 
+
+
 export default class Filtros extends Component {
     render() {
         return (
@@ -35,9 +37,18 @@ export default class Filtros extends Component {
                     </h2>
                 </div>
                 <FiltrosValores>
+                    <p>Ordem:</p>
+                    <select id="Ordem" name="Ordem">
+                        <option value="Crescente">Crescente</option>
+                        <option value="Decrescente">Decrescente</option>
+                    </select>
+                </FiltrosValores>
+                
+                <FiltrosValores>
                     <p>Valor Mínimo</p>
                     <input type="number" placeholder="Digite o valor mínimo." id="campoValorMínimo" />
                 </FiltrosValores>
+
                 <FiltrosValores>
                     <p>Valor Máximo</p>
                     <input type="number" placeholder="Digite o valor máximo." id="campoValorMáximo" />
