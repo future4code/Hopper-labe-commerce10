@@ -14,11 +14,22 @@ position: relative;
   position: absolute;
   top: 120px;
   right: 0;
-  background-color: white;
+  border-radius: 0 0 7px 7px;
+  animation: color-change-2x 2s linear infinite alternate both;
+
+@keyframes color-change-2x {
+0% {
+  background: #19dcea;
+}
+100% {
+  background: #b22cff;
+}
+}
   padding: 10px;
   
   h3{
     text-align: center;
+    text-decoration: underline;
   }
   
   h4{
