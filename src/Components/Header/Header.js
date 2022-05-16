@@ -76,16 +76,32 @@ const Perfil = styled.div`
 `
 
 const Sacola = styled.div`
+button{
+    position: relative;
+    background: transparent;
     display: flex;
     margin: 20px 50px;
     align-items: center;
+    border: none;
+    cursor: pointer;
+    
+        img{
+            height: 40px;
+            width: 40Px;
+            margin-right: 10px;
+    
+        }
 
-    img{
-        height: 40px;
-        width: 40Px;
-        margin-right: 10px;
-
+        span{
+            background-color: white;
+            padding: 3px;
+            border-radius: 25%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
     }
+
 `
 
 
@@ -100,7 +116,7 @@ export default class Header extends Component {
                 </NomeLogo>
 
                 <Input>
-                    <input type="text" placeholder="O que você esta procurando?" id="campoDeBusca" />
+                    <input onChange={this.props.PesquisaItem} value={this.props.valorPesquisa} type="search" placeholder="O que você esta procurando?" id="campoDeBusca" />
                     <img src="img/pesquisa.png" alt="Lupa"></img>
                 </Input>
 
@@ -111,13 +127,16 @@ export default class Header extends Component {
                     </Perfil>
 
                     <Sacola>
-                        <img src="img/sacola.png" alt="Sacola de Compras"></img>
-                        <p>Sua Sacola</p>
+                        <button  onClick={this.props.VerCarrinho}>
+                            <img src="img/sacola.png" alt="Sacola de Compras"></img>
+                            <p>Sua Sacola</p>
+                            {this.props.quantidadeItensCarrinho ? <span>{this.props.quantidadeItensCarrinho}</span> : ""}
+                        </button>
                     </Sacola>
 
                 </AreaLogin>
             </ContainerPrincipal>
-            
+
         )
     }
 }

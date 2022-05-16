@@ -6,6 +6,32 @@ import Produtos from './Components/Produto/Produto';
 import Footer from './Components/Footer/Footer';
 import Carrinho from './Components/Carrinho/Carrinho';
 
+const ContainerPrincipal = styled.div`
+position: relative;
+
+#idCar{
+  width: 450px;
+  position: absolute;
+  top: 120px;
+  right: 0;
+  background-color: white;
+  padding: 10px;
+  
+  h3{
+    text-align: center;
+  }
+  
+  h4{
+    text-align: center;
+  }
+}
+
+.car{
+  opacity: 0;
+}
+
+
+`
 
 const Banner = styled.img`
  height: 350px;
@@ -16,6 +42,7 @@ const Cards = styled.div`
   display: flex;
   justify-content: space-evenly;
 `
+
 
 
 export default class App extends React.Component {
@@ -52,7 +79,8 @@ export default class App extends React.Component {
       }
     ],
     arrayCarrinho: [],
-    valorTotalCarrinho: 0
+    valorTotalCarrinho: 0,
+    busca: ''
   }
 
 
@@ -83,29 +111,41 @@ export default class App extends React.Component {
   }
 
   RemoverProdutos = (x) => {
-    if(x.quantidade > 1){
+    if (x.quantidade > 1) {
       const item = this.state.arrayCarrinho.map((item) => {
-        if(x.id === item.id){
+        if (x.id === item.id) {
           item.quantidade = item.quantidade - 1
-          this.setState({valorTotalCarrinho: this.state.valorTotalCarrinho - x.value})
+          this.setState({ valorTotalCarrinho: this.state.valorTotalCarrinho - x.value })
         }
-        return item 
+        return item
       })
-      this.setState({arrayCarrinho: item})
+      this.setState({ arrayCarrinho: item })
     } else {
       const item2 = this.state.arrayCarrinho.filter((item) => {
-        return item.id !== x.id 
+        return item.id !== x.id
       })
-      this.setState({arrayCarrinho: item2, valorTotalCarrinho: this.state.valorTotalCarrinho - x.value})
+      this.setState({ arrayCarrinho: item2, valorTotalCarrinho: this.state.valorTotalCarrinho - x.value })
     }
+  }
+
+  VerCarrinho = () => {
+    const seeCar = document.getElementById("idCar")
+    seeCar.classList.toggle("car")
+  }
+
+
+  PesquisaItem = (event) => {
+    this.setState({busca: event.target.value})
   }
 
 
 
 
   render() {
-
-    const ListaDeProdutos = this.state.produtos.map((produto) => {
+    const ProdutosFiltrados = this.state.produtos.filter((item) =>{
+      return item.name.includes(this.state.busca)
+    })
+    const ListaDeProdutos = ProdutosFiltrados.map((produto) => {
       return (
         <Produtos
           CaminhoImg={produto.imageUrl}
@@ -127,9 +167,14 @@ export default class App extends React.Component {
     })
 
     return (
-      <div>
-        <Header />
-        <div>
+      <ContainerPrincipal>
+        <Header
+          VerCarrinho={this.VerCarrinho}
+          quantidadeItensCarrinho={this.state.arrayCarrinho.length}
+          valorPesquisa={this.state.busca}
+          PesquisaItem={this.PesquisaItem}
+        />
+        <div id='idCar'>
           <h3>Sacola de Compras</h3>
           {this.state.arrayCarrinho.length ? "" : <h4>Sacola Vazia.</h4>}
           {ListaDeProdutosCarrinho}
@@ -139,7 +184,8 @@ export default class App extends React.Component {
         <Filtros />
         <Cards>{ListaDeProdutos}</Cards>
         <Footer />
-      </div>
+      </ContainerPrincipal>
     )
   }
 }
+
